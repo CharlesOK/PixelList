@@ -14,13 +14,13 @@ module.exports = (knex) => {
     });
   });
 
+  router.delete("/:id/items", (req, res) => {
+    res.redirect("/");
+  });
+
+  router.put("/:id/items", (req, res) => {
+    res.redirect("/");
+  });
+
   return router;
 };
-
-router.delete("/:id/items", (req, res) => {
-  res.redirect("/");
-});
-
-router.put("/:id/items", (req, res) => {
-  res.redirect("/");
-});
