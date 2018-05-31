@@ -8,6 +8,7 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
+const methodOverride = require("method-override");
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -35,6 +36,11 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
+
+
+// Method-override for PUTS and DELETES
+app.use(methodOverride('_method'));
+
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
@@ -42,6 +48,7 @@ app.use("/api/users", usersRoutes(knex));
 app.get("/", (req, res) => {
   res.render("index");
 });
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
