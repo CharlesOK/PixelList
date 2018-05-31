@@ -7,12 +7,20 @@ module.exports = (knex) => {
 
   router.get("/", (req, res) => {
     knex
-      .select("*")
-      .from("users")
-      .then((results) => {
-        res.json(results);
+    .select("*")
+    .from("users")
+    .then((results) => {
+      res.json(results);
     });
   });
 
   return router;
-}
+};
+
+router.delete("/:id/items", (req, res) => {
+  res.redirect("/");
+});
+
+router.put("/:id/items", (req, res) => {
+  res.redirect("/");
+});
